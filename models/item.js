@@ -1,4 +1,4 @@
-const Schema = require(`mongoose`);
+const { Schema, model } = require(`mongoose`);
 
 const itemSchema = new Schema({
   name: { type: String, required: true },
@@ -12,4 +12,4 @@ itemSchema.virtual("url").get(function () {
   return "/item/" + this.id;
 });
 
-module.exports = mongoose.model("item", itemSchema);
+module.exports = model("item", itemSchema);

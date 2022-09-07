@@ -1,4 +1,4 @@
-const Schema = require(`mongoose`);
+const { Schema, model } = require(`mongoose`);
 
 const categorySchema = new Schema({
   name: { type: String, required: true },
@@ -9,4 +9,4 @@ categorySchema.virtual("url").get(function () {
   return "/category/" + this.id;
 });
 
-module.exports = mongoose.model("category", categorySchema);
+module.exports = model("category", categorySchema);
