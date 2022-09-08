@@ -1,7 +1,7 @@
 const { Router } = require("express");
 const {
   category_list,
-  category_detail,
+  category_items,
   category_create_get,
   category_create_post,
   category_delete_get,
@@ -24,7 +24,7 @@ router.get("/:id/update", category_update_get);
 
 router.post("/:id/update", category_update_post);
 
-router.get("/:id", category_detail);
+router.get("/:id", category_items);
 
 router.get("/", category_list);
 

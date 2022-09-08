@@ -18,7 +18,7 @@ exports.category_list = (req, res) => {
     });
 };
 
-exports.category_detail = (req, res) => {
+exports.category_items = (req, res) => {
   async.parallel(
     {
       Category(callback) {
