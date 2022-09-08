@@ -2,7 +2,7 @@ const category = require("../models/category");
 const item = require("../models/item");
 const async = require("async");
 
-exports.item_detail = (req, res) => {
+exports.item_detail = (req, res, next) => {
   item.findById(req.params.id).exec((err, show_item) => {
     if (err) {
       return next(err);
@@ -22,7 +22,7 @@ exports.item_create_post = (req, res) => {
   res.send("NOT IMPLEMENTED");
 };
 
-exports.item_delete_get = (req, res) => {
+exports.item_delete_get = (req, res, next) => {
   item.findById(req.params.id).exec((err, show_item) => {
     if (err) {
       return next(err);
@@ -33,7 +33,7 @@ exports.item_delete_get = (req, res) => {
   });
 };
 
-exports.item_delete_post = (req, res) => {
+exports.item_delete_post = (req, res, next) => {
   item.findByIdAndDelete(req.params.id).exec((err) => {
     if (err) {
       return next(err);
@@ -42,7 +42,7 @@ exports.item_delete_post = (req, res) => {
   });
 };
 
-exports.item_update_get = (req, res) => {
+exports.item_update_get = (req, res, next) => {
   async.parallel(
     {
       Item(callback) {
@@ -66,7 +66,7 @@ exports.item_update_get = (req, res) => {
   );
 };
 
-exports.item_update_post = (req, res) => {
+exports.item_update_post = (req, res, next) => {
   const Item = new item({
     name: req.body.name,
     description: req.body.description,
