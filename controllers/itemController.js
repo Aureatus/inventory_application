@@ -14,12 +14,33 @@ exports.item_detail = (req, res, next) => {
   });
 };
 
-exports.item_create_get = (req, res) => {
-  res.send("NOT IMPLEMENTED");
+exports.item_create_get = (req, res, next) => {
+  category.findById(req.params.id).exec((err, show_category) => {
+    if (err) {
+      return next(err);
+    }
+    res.render("item_create_form", {
+      title: `Create new item in ${show_category.name}`,
+      category: show_category,
+    });
+  });
 };
 
-exports.item_create_post = (req, res) => {
-  res.send("NOT IMPLEMENTED");
+exports.item_create_post = (req, res, next) => {
+  const Item = new item({
+    name: req.body.name,
+    description: req.body.description,
+    category: req.body.category,
+    price: req.body.price,
+    number_in_stock: req.body.number_in_stock,
+  });
+
+  Item.save((err) => {
+    if (err) {
+      return next(err);
+    }
+    res.redirect(Item.url);
+  });
 };
 
 exports.item_delete_get = (req, res, next) => {
