@@ -10,3 +10,5 @@ block content
           a(href=item.url) #{item.name}
       else
         li There are no items in this category.
+    
+    a(href=`/item/${category._id}/create`) Create new item in #{category.name} 
