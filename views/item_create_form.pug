@@ -1,0 +1,18 @@
+extends layout
+
+block content
+  h1= title
+
+  form(action="create", method="POST")
+    label Name:
+      input(type="text"  required name="name")
+    label Description:
+      input(type="text" required name="description")
+    label Category:
+      select(type='select' required='true' name="category")
+          option(value=category._id) #{category.name}
+    label Price: $
+      input(type="number" required name="price")
+    label Number in stock: 
+      input(type="number" required name="number_in_stock")
+    input(type="submit", value="Create")
