@@ -1,0 +1,10 @@
+extends layout
+
+block content
+  h1= title
+
+  h2= item_detail.name
+  p= item_detail.description
+  p Price: $#{item_detail.price}
+  p Number in stock: #{item_detail.number_in_stock}
+    
