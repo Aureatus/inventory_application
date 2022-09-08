@@ -2,7 +2,7 @@ const category = require("../models/category");
 const item = require("../models/item");
 const async = require("async");
 
-exports.category_list = (req, res) => {
+exports.category_list = (req, res, next) => {
   category
     .find()
     .sort({ name: "asc" })
@@ -18,7 +18,7 @@ exports.category_list = (req, res) => {
     });
 };
 
-exports.category_items = (req, res) => {
+exports.category_items = (req, res, next) => {
   async.parallel(
     {
       Category(callback) {
