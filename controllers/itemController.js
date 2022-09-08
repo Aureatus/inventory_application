@@ -1,7 +1,15 @@
 const item = require("../models/item");
 
 exports.item_detail = (req, res) => {
-  res.send("NOT IMPLEMENTED");
+  item.findById(req.params.id).exec((err, show_item) => {
+    if (err) {
+      return next(err);
+    }
+    res.render("item_detail", {
+      title: "Item Detail",
+      item_detail: show_item,
+    });
+  });
 };
 
 exports.item_create_get = (req, res) => {
