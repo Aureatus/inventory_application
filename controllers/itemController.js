@@ -21,11 +21,23 @@ exports.item_create_post = (req, res) => {
 };
 
 exports.item_delete_get = (req, res) => {
-  res.send("NOT IMPLEMENTED");
+  item.findById(req.params.id).exec((err, show_item) => {
+    if (err) {
+      return next(err);
+    }
+    res.render("item_delete", {
+      name: show_item.name,
+    });
+  });
 };
 
 exports.item_delete_post = (req, res) => {
-  res.send("NOT IMPLEMENTED");
+  item.findByIdAndDelete(req.params.id).exec((err) => {
+    if (err) {
+      return next(err);
+    }
+    res.redirect("/categories");
+  });
 };
 
 exports.item_update_get = (req, res) => {
