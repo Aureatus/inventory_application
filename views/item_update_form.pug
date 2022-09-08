@@ -1,0 +1,19 @@
+extends layout
+
+block content
+  h1= title
+
+  form(action="update", method="POST")
+    label Name:
+      input(type="text" value=item.name required name="name")
+    label Description:
+      input(type="text" value=item.description required name="description")
+    label Category:
+      select(type='select' required='true' name="category")
+        each category in categories
+          option(value=category._id selected=(category._id.toString() === item.category._id.toString())) #{category.name}
+    label Price: $
+      input(type="number" required value=item.price name="price")
+    label Number in stock: 
+      input(type="number" required value=item.number_in_stock name="number_in_stock")
+    input(type="submit", value="Update")
