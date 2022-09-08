@@ -6,7 +6,7 @@ const categorySchema = new Schema({
 });
 
 categorySchema.virtual("url").get(function () {
-  return "/category/" + this.id;
+  return "/categories/" + this.id;
 });
 
 module.exports = model("category", categorySchema);
