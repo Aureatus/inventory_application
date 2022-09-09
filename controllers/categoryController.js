@@ -48,11 +48,23 @@ exports.category_items = (req, res, next) => {
 };
 
 exports.category_create_get = (req, res) => {
-  res.send("NOT IMPLEMENTED");
+  res.render("category_create_form", {
+    title: "Create new category",
+  });
 };
 
-exports.category_create_post = (req, res) => {
-  res.send("NOT IMPLEMENTED");
+exports.category_create_post = (req, res, next) => {
+  const Category = new category({
+    name: req.body.name,
+    description: req.body.description,
+  });
+
+  Category.save((err) => {
+    if (err) {
+      return next(err);
+    }
+    res.redirect(Category.url);
+  });
 };
 
 exports.category_delete_get = (req, res) => {
