@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  h1 Are you sure you want to delete #{category.name}?
+  if category_items[0]
+   h2 You will also be deleting:
+  ul
+    each item in category_items
+      li
+        a(href=item.url) #{item.name}
+
+  form(action="delete", method="POST")
+      button(type="submit") Yes
