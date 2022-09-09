@@ -63,10 +63,30 @@ exports.category_delete_post = (req, res) => {
   res.send("NOT IMPLEMENTED");
 };
 
-exports.category_update_get = (req, res) => {
-  res.send("NOT IMPLEMENTED");
+exports.category_update_get = (req, res, next) => {
+  category.findById(req.params.id).exec((err, show_category) => {
+    if (err) {
+      return next(err);
+    }
+    res.render("category_update_form", {
+      title: "Update category",
+      category: show_category,
+    });
+  });
 };
 
-exports.category_update_post = (req, res) => {
-  res.send("NOT IMPLEMENTED");
+exports.category_update_post = (req, res, next) => {
+  const Category = new category({
+    name: req.body.name,
+    description: req.body.description,
+    _id: req.params.id,
+  });
+
+  category.findByIdAndUpdate(req.params.id, Category, (err, Category) => {
+    if (err) {
+      console.log(Category);
+      return next(err);
+    }
+    res.redirect(Category.url);
+  });
 };
