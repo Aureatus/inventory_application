@@ -8,8 +8,13 @@ var logger = require("morgan");
 var indexRouter = require("./routes/index");
 const categoriesRouter = require("./routes/categories");
 const itemRouter = require("./routes/item");
+const compression = require("compression");
+const helmet = require("helmet");
 
 var app = express();
+
+app.use(compression());
+app.use(helmet());
 // Connect to mongoDB
 const { connect, connection } = require("mongoose");
 const mongoDB = `mongodb+srv://admin:${process.env.MONGO_PASSWORD}@cluster0.mgngurm.mongodb.net/?retryWrites=true&w=majority`;
